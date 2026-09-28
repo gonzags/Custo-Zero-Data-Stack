@@ -9,3 +9,11 @@ models:
         tests:
           - unique
           - not_null
+  - name: stg_olist__products
+    description: Um produto por linha, com nomes de coluna padronizados.
+    columns:
+      - name: product_id
+        description: Chave de id do produto.
+        tests:
+          - unique
+          - not_null
