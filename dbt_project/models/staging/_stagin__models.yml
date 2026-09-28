@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_olist__customers
+    description: Um cliente por linha, com cidade/estado normalizados (minúsculo/maiúsculo).
+    columns:
+      - name: customer_id
+        description: Chave do cliente no nível do pedido (não é o unique_id do cliente físico).
+        tests:
+          - unique
+          - not_null

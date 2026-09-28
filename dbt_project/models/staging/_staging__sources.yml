@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: olist_raw
+    description: >
+      Dados brutos do Olist lidos como arquivos externos via DuckDB
+      (read_csv_auto).
+    tables:
+      - name: customers
+        meta:
+          external_location: "{{ var('data_raw_path') }}/olist_customers_dataset.csv"
+      - name: orders
+        meta:
+          external_location: "{{ var('data_raw_path') }}/olist_orders_dataset.csv"
+      - name: order_items
+        meta:
+          external_location: "{{ var('data_raw_path') }}/olist_order_items_dataset.csv"
+      - name: order_payments
+        meta:
+          external_location: "{{ var('data_raw_path') }}/olist_order_payments_dataset.csv"
+      - name: products
+        meta:
+          external_location: "{{ var('data_raw_path') }}/olist_products_dataset.csv"
+      - name: sellers
+        meta:
+          external_location: "{{ var('data_raw_path') }}/olist_sellers_dataset.csv"
+      - name: order_reviews
+        meta:
+          external_location: "{{ var('data_raw_path') }}/olist_order_reviews_dataset.csv"
+      - name: geolocation
+        meta:
+          external_location: "{{ var('data_raw_path') }}/olist_geolocation_dataset.csv"
