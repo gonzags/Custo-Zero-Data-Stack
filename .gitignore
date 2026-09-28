@@ -1,0 +1,16 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Dados brutos (não se versiona dado transacional)
+data_raw/*.csv
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+
+# DuckDB (warehouse gerado, não é código-fonte)
+dbt_project/database/*.duckdb
+dbt_project/database/*.duckdb.wal
