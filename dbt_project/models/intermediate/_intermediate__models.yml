@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: int_order_payments_pivoted
+    description: >
+      Um pedido por linha, com o valor pago em cada forma de pagamento
+      pivotado em colunas (via macro pivot_sum). Grão: order_id.
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: total_payment_value
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
