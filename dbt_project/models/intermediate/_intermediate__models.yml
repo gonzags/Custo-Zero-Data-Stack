@@ -14,3 +14,16 @@ models:
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
+
+  - name: int_geolocation_by_zip
+    description: >
+      Uma linha por CEP, com coordenadas agregadas (média), cidade/estado
+      resolvidos via max() entre múltiplos valores, e nome do estado por
+      extenso via join com o seed geolocation_state_pattern. Filtra 42
+      linhas com coordenadas fora do intervalo geográfico do Brasil antes
+      de agregar.
+    columns:
+      - name: geolocation_zip_code_prefix
+        tests:
+          - unique
+          - not_null
