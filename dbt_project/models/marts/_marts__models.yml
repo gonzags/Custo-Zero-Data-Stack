@@ -35,6 +35,7 @@ models:
       - name: product_key
         tests:
           - not_null
-          - relationships:
-              to: ref('dim_products')
-              field: product_key
+- relationships:
+    arguments:
+      to: ref('dim_customers')
+      field: customer_key
