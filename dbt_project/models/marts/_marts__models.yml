@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Dimensão tratada e finaliza da Dim_Customers.
+    columns:
+      - name: customer_key
+        description: Chave do cliente no nível do pedido (não é o unique_id do cliente físico).
+        tests:
+          - unique
+          - not_null
+  - name: dim_products
+    description: Dimensão tratada e finalizada da Dim_Products.
+    columns:
+      - name: product_key
+        description: Chave do produto no nível do pedido (não é o unique_id do produto físico).
+        tests:
+          - unique
+          - not_null
+  - name: fct_orders
+    description: >
+      Fact de vendas no grão de item de pedido. int_order_payments_pivoted
+      não é juntado aqui (ver comentário no .sql) para evitar fan-out.
+    columns:
+      - name: order_item_key
+        tests:
+          - unique
+          - not_null
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_key
+      - name: product_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_key
