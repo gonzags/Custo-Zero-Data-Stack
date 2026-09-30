@@ -16,3 +16,4 @@ dbt_project/.user.yml
 
 .env
 .vscode/settings.json
+dbt_project/analyses/scratch.sql
