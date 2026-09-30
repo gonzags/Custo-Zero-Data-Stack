@@ -1,0 +1,37 @@
+name: dbt CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14.4"
+
+      - name: Instalar dependências
+        working-directory: dbt_project
+        run: |
+          pip install -r ../requirements.txt
+
+      - name: dbt deps
+        working-directory: dbt_project
+        run: dbt deps --profiles-dir .
+
+      - name: dbt seed
+        working-directory: dbt_project
+        run: dbt seed --profiles-dir .
+
+      - name: dbt build (run + test)
+        working-directory: dbt_project
+        run: dbt build --profiles-dir . --vars '{data_raw_path: ../data_raw_sample}'
